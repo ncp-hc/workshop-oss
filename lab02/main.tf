@@ -186,7 +186,7 @@ resource "null_resource" "configure-cat-app" {
 
   provisioner "file" {
     source      = "files/"
-    destination = "~/"
+    destination = "/tmp"
 
     connection {
       type     = "ssh"
@@ -204,8 +204,8 @@ resource "null_resource" "configure-cat-app" {
       "sudo apt -y update",
       "sudo apt -y install apache2",
       "sudo systemctl start apache2",
-      "chmod +x ~/*.sh",
-      "PLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} ~/deploy_app.sh",
+      "chmod +x /tmp/*.sh",
+      "PLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} /tmp/deploy_app.sh",
     ]
 
     connection {
